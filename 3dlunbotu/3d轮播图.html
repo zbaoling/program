@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            perspective: 500px;
+
+        }
+
+        .box {
+            /*perspective: 500px;*/
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 100px auto;
+            transform-style: preserve-3d;
+            transform: scale3d(2, 1, 1) rotate3d(1, 0, 0, 0deg);
+            transition: 1s;
+        }
+
+        .box div {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: url(img/1.png) no-repeat;
+        }
+
+        /*后面*/
+        .box div:nth-child(1) {
+            transform: translateZ(-100px) rotateX(180deg);
+        }
+
+        /*底面*/
+        .box div:nth-child(2) {
+            transform: translateY(100px) rotateX(-90deg);
+        }
+
+        /*正面*/
+        .box div:nth-child(3) {
+            transform: translateZ(100px) rotateX(0deg);
+        }
+
+        /*上面*/
+        .box div:nth-child(4) {
+            transform: translateY(-100px) rotateX(90deg);
+        }
+
+        /*右面*/
+        .box div:nth-child(5) {
+            transform: translateX(100px) rotateY(90deg);
+        }
+
+        /*!*左面*!*/
+        .box div:nth-child(6) {
+            transform: translateX(-100px) rotateY(-90deg);
+        }
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <div>第一面</div>
+    <div>第二面</div>
+    <div>第三面</div>
+    <div>第四面</div>
+    <div>第五面</div>
+    <div>第六面</div>
+</div>
+<button>上翻</button>
+<button>下翻</button>
+<script src=jquery-1.11.2.min.js></script>
+<script>
+    $(function () {
+        var $key = 0;
+        var flag = true;
+
+        $('button').eq(1).click(function () {
+            if (!flag) {
+                return false;
+            }
+            flag = false;
+            $key++;
+            $('.box').css('transform', ' scale3d(2,1,1) rotate3d(1,0,0,' + $key * 90 + 'deg)');
+        })
+        $('button').eq(0).click(function () {
+            if (!flag) {
+                return false;
+            }
+            flag = false;
+            $key--;
+            $('.box').css('transform', ' scale3d(2,1,1) rotate3d(1,0,0,' + $key * 90 + 'deg)');
+
+        })
+        $('.box').on('transitionend', function () {
+            flag = true;
+        })
+
+    })
+</script>
+</body>
+</html>
