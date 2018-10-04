@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #box{
+            width: 1150px;
+            height: 40px;
+        }
+        ul{
+            width: 1300px;
+            height: 40px;
+        }
+       li{
+           float: left;
+           list-style: none;
+           width: 240px;
+           height: 400px;
+           overflow: hidden;
+       }
+    </style>
+    <script src="jquery-1.12.2.js"></script>
+    <script>
+        $(function () {
+            $('#box>ul>li').mouseover(function () {
+                //将当前li的宽度设为800,其他li宽度设为100
+                $(this).siblings('li').css('width','100px');
+                $(this).css('width','800px');
+            })
+            $('#box').mouseout(function () {
+                //将当前li的宽度设为800,其他li宽度设为100
+                $(this).find('li').css('width','240px');
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div id="box">
+        <ul>
+            <li>
+                <img src="images/1.jpg" />
+            </li>
+            <li>
+                <img src="images/2.jpg" />
+            </li>
+            <li>
+                <img src="images/3.jpg" />
+            </li>
+            <li>
+                <img src="images/4.jpg" />
+            </li>
+            <li>
+                <img src="images/5.jpg" />
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
